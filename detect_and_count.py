@@ -53,7 +53,7 @@ def calculate_movement_vector(pointA,pointB): #returns the vector that goes from
   return result
 
 def calculate_distance(pointA,pointB): #returns the distance between point A and point B
-  result=(((pointB[0]-pointA[0])**2)+((pointB[1]-pointA[1]))**2))**0.5
+  result=(((pointB[0]-pointA[0])**2)+((pointB[1]-pointA[1])**2))**0.5
   return result
 
 def label_to_point(label):
@@ -74,7 +74,7 @@ def calcuate_center(labels): #set the center locations of all the given vehicles
 
 def match_labels(oldlabels,labels): #matches the vehicles with the vehicles from the previous frame
   matchtable=np.array([])
-  if(oldlabels.size=0):
+  if(oldlabels.size==0):
     return matchtable
   for i in range(labels.shape[0]):
     temp=np.finfo(labels.dtype).max
