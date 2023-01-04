@@ -120,7 +120,7 @@ def run(source_path,weights_path,hard_lines,hwtreshold,lines_crossed):
   tsec=time.time()
   freq=0
   while(True):
-    os.system(f"python detect.py --weights {weights_path} --source {source_path} --save-text --save-conf --nosave --line-thickness 1 --conf-thres 0.8")
+    os.system(f"python detect.py --weights {weights_path} --source {source_path} --save-txt --save-conf --nosave --line-thickness 1 --conf-thres 0.8")
     with open("runs/detect/exp/labels/image.txt","r") as f:
       if(labels.size==0):
         labelsold=np.array([])
@@ -156,6 +156,6 @@ if __name__ == "__main__":
   lines_crossed=np.zeros((len(hard_lines),2),dtype=int)
   weights="Vehicle-Detection/runs/train/exp12/weights/best.pt"
   source="image.jpg"
-  run(source_path,weights_path,hard_lines,hwtreshold,lines_crossed) #runs until stopped
+  run(source,weights,hard_lines,hwtreshold,lines_crossed) #runs until stopped
   
   
