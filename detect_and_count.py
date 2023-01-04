@@ -121,6 +121,14 @@ def run(source_path,weights_path,hard_lines,hwtreshold,lines_crossed):
   freq=0
   while(True):
     os.system(f"python detect.py --weights {weights_path} --source {source_path} --save-txt --save-conf --nosave --line-thickness 1 --conf-thres 0.8")
+    if(os.path.isfile("runs/detect/exp/labels/image.txt")):
+      print("txt output file not found!")
+      if(time.time()-tsec>5.0):
+        print(f"FPS: {freq/5.0}")
+        freq=0
+        print_lines_crossed(lines_crossed)
+        tsec=time.time()
+        continue
     with open("runs/detect/exp/labels/image.txt","r") as f:
       if(labels.size==0):
         labelsold=np.array([])
