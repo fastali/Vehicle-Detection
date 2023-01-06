@@ -113,6 +113,15 @@ def print_lines_crossed(lines_crossed):
   print(f"güneye giden: {lines_crossed[0,1]}")
   print(f"kuzeye giden: {lines_crossed[3,1]}")
   print(f"batıya giden: {lines_crossed[6,1]}")
+  
+def estimate_flow(oldlabels,labels):
+  labels=filters(labels,hwtreshold)
+  labels=np.c_[labels, np.zeros(labels.shape[0]) , np.zeros(labels.shape[0])]
+  labels=calcuate_center(labels)
+  matchtable=match_labels(oldlabels,labels)
+  movement_vectors=generate_vectors(matchtable,oldlabels,labels)
+  lines_crossed=do_vectors_cross_any_lines(hard_lines,movement_vectors,lines_crossed)
+  return lines_crossed
 
 def run(source_path,weights_path,hard_lines,hwtreshold,lines_crossed):
   labels=np.array([])
@@ -136,12 +145,7 @@ def run(source_path,weights_path,hard_lines,hwtreshold,lines_crossed):
       else:
         labelsold=deepcopy(labels)
       labels=np.asarray([i.split() for i in f.readlines()], dtype=float)
-    labels=filters(labels,hwtreshold)
-    labels=np.c_[labels, np.zeros(labels.shape[0]) , np.zeros(labels.shape[0])]
-    labels=calcuate_center(labels)
-    matchtable=match_labels(oldlabels,labels)
-    movement_vectors=generate_vectors(matchtable,oldlabels,labels)
-    lines_crossed=do_vectors_cross_any_lines(hard_lines,movement_vectors,lines_crossed)
+    lines_crossed=estimate_flow(oldlabels,labels)
     freq+=1
     if(time.time()-tsec>5.0):
       print(f"FPS: {freq/5.0}")
