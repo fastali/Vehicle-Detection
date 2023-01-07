@@ -101,7 +101,7 @@ def match_labels(oldlabels,labels): #matches the vehicles with the vehicles from
 def generate_vectors(matchtable,oldlabels,labels): #produces the vectors from matched labels
   movement_vectors=np.zeros((matchtable.shape[0],4),dtype=float)
   for i in range(matchtable.shape[0]):
-    movement_vectors[i]=calculate_distance_vector(label_to_point(labels[matchtable[i,0]]),label_to_point(oldlabels[matchtable[i,1]]))
+    movement_vectors[i]=calculate_movement_vector(label_to_point(labels[matchtable[i,0]]),label_to_point(oldlabels[matchtable[i,1]]))
   return movement_vectors
 
 def print_lines_crossed(lines_crossed):
