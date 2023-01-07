@@ -114,17 +114,27 @@ def print_lines_crossed(lines_crossed):
   print(f"kuzeye giden: {lines_crossed[3,1]}")
   print(f"batıya giden: {lines_crossed[6,1]}")
   
+def is_empty(nparray):
+  if(nparray.size==0):
+    return True
+
+def check_dims(nparray):
+  if(len(nparray.shape)==1):
+    return np.reshape(nparray,(1,nparray.shape[0]))
+  return nparray
+
 def estimate_flow(oldlabels,labels,hard_lines,lines_crossed,hwtreshold):
-  if((labels.size==0) or (oldlabels.size==0)):
+  if(is_empty(labels) or is_empty(oldlabels)):
     return lines_crossed
-  if(len(labels.shape)==1):
-    labels=np.reshape(labels,(1,labels.shape[0]))
-  if(len(oldlabels.shape)==1):
-    oldlabels=np.reshape(oldlabels,(1,oldlabels.shape[0]))
+  labels=check_dims(labels)
+  oldlabels=check_dims(oldlabels)
   labels=filters(labels,hwtreshold)
   labels=np.c_[labels, np.zeros(labels.shape[0]) , np.zeros(labels.shape[0])]
   labels=calcuate_center(labels)
   matchtable=match_labels(oldlabels,labels)
+  if(is_empty(matchable)):
+    return lines_crossed
+  matchable=check_dims(matchable)
   movement_vectors=generate_vectors(matchtable,oldlabels,labels)
   lines_crossed=do_vectors_cross_any_lines(hard_lines,movement_vectors,lines_crossed)
   return lines_crossed
