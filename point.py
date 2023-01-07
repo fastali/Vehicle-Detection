@@ -1,3 +1,5 @@
+from vector import Vector
+
 
 class Point:
     def __init__(self,x=0,y=0):
@@ -6,6 +8,12 @@ class Point:
     
     def distance(self,pointB):
         return (((self.x-pointB.x)**2)+((self.y-pointB.y)**2))**0.5
+    
+    def vectorTo(self,pointB):
+        return Vector(self,pointB)
+    
+    def vectorFrom(self,pointB):
+        return Vector(pointB,self)
   
     def newFromPoint(self,relpointB):
         return Point(self.x+relpointB.x,self.y+relpointB.y)
