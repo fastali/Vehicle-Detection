@@ -10,6 +10,7 @@ import argparse
 import sys
 import time
 from pathlib import Path
+from copy import deepcopy
 
 import detect_and_count
 
