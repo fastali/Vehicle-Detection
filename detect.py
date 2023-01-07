@@ -16,6 +16,7 @@ import detect_and_count
 import cv2
 import numpy as np
 import torch
+import torch.nn as nn
 import torch.backends.cudnn as cudnn
 
 FILE = Path(__file__).absolute()
@@ -114,6 +115,12 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
     imgsz = check_img_size(imgsz, s=stride)  # check image size
     ascii = is_ascii(names)  # names are ascii (use PIL for UTF-8)
 
+    for m in model.modules():
+    if isinstance(m, nn.Upsample):
+        m.recompute_scale_factor = None
+    
+    
+    
     # Dataloader
     if webcam:
         view_img = check_imshow()
