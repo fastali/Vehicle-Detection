@@ -125,20 +125,19 @@ def check_dims(nparray):
 
 def estimate_flow(oldlabels,labels,hard_lines,lines_crossed,hwtreshold):
   if(is_empty(labels) or is_empty(oldlabels)):
-    return lines_crossed
+    return lines_crossed, labels
   labels=check_dims(labels)
-  labels=np.r_[np.zeros(labels.shape[0]),labels]
-  oldlabels=check_dims(oldlabels)
+  labels=np.c_[np.zeros(labels.shape[0]),labels]
   labels=filters(labels,hwtreshold)
-  labels=np.c_[labels, np.zeros(labels.shape[0]) , np.zeros(labels.shape[0])]
+  labels=np.c_[labels,np.zeros(labels.shape[0]), np.zeros(labels.shape[0]) , np.zeros(labels.shape[0])]
   labels=calcuate_center(labels)
   matchtable=match_labels(oldlabels,labels)
   if(is_empty(matchable)):
-    return lines_crossed
+    return lines_crossed ,labels
   matchable=check_dims(matchable)
   movement_vectors=generate_vectors(matchtable,oldlabels,labels)
   lines_crossed=do_vectors_cross_any_lines(hard_lines,movement_vectors,lines_crossed)
-  return lines_crossed
+  return lines_crossed, labels
 
 def run(source_path,weights_path,hard_lines,hwtreshold,lines_crossed):
   labels=np.array([])
