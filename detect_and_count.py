@@ -127,6 +127,7 @@ def estimate_flow(oldlabels,labels,hard_lines,lines_crossed,hwtreshold):
   if(is_empty(labels) or is_empty(oldlabels)):
     return lines_crossed
   labels=check_dims(labels)
+  labels=np.r_[np.zeros(labels.shape[0]),labels]
   oldlabels=check_dims(oldlabels)
   labels=filters(labels,hwtreshold)
   labels=np.c_[labels, np.zeros(labels.shape[0]) , np.zeros(labels.shape[0])]
