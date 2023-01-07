@@ -115,6 +115,10 @@ def print_lines_crossed(lines_crossed):
   print(f"batıya giden: {lines_crossed[6,1]}")
   
 def estimate_flow(oldlabels,labels,hard_lines,lines_crossed,hwtreshold):
+  if(labels.size==0):
+    return lines_crossed
+  if(len(labels.shape)==1):
+    labels=np.reshape(labels,(1,labels.shape[0]))
   labels=filters(labels,hwtreshold)
   labels=np.c_[labels, np.zeros(labels.shape[0]) , np.zeros(labels.shape[0])]
   labels=calcuate_center(labels)
