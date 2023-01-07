@@ -120,7 +120,7 @@ def estimate_flow(oldlabels,labels,hard_lines,lines_crossed,hwtreshold):
   if(len(labels.shape)==1):
     labels=np.reshape(labels,(1,labels.shape[0]))
   if(len(oldlabels.shape)==1):
-    oldlabels=np.reshape(oldlabels,(1,oldlabels.shape[0])
+    oldlabels=np.reshape(oldlabels,(1,oldlabels.shape[0]))
   labels=filters(labels,hwtreshold)
   labels=np.c_[labels, np.zeros(labels.shape[0]) , np.zeros(labels.shape[0])]
   labels=calcuate_center(labels)
