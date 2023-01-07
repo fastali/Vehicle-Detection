@@ -237,7 +237,7 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                     if(time.time()-tsec>5.0):
                         print(f"FPS: {freq/5.0}")
                         freq=0
-                        print_lines_crossed(lines_crossed)
+                        detect_and_count.print_lines_crossed(lines_crossed)
                         tsec=time.time()
 
             # Print time (inference + NMS)
