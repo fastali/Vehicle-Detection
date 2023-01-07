@@ -54,6 +54,7 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
         hide_labels=False,  # hide labels
         hide_conf=False,  # hide confidences
         half=False,  # use FP16 half-precision inference
+        track_and_count=False # track vehicles and count incoming/outgoing
         ):
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
@@ -119,11 +120,16 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
         dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
         bs = 1  # batch_size
     vid_path, vid_writer = [None] * bs, [None] * bs
+    
+    old_labels=np.array([])
+    labels=np.array([])
 
     # Run inference
     if pt and device.type != 'cpu':
         model(torch.zeros(1, 3, *imgsz).to(device).type_as(next(model.parameters())))  # run once
     t0 = time.time()
+    tsec=time.time()
+    freq=0
     for path, img, im0s, vid_cap in dataset:
         if onnx:
             img = img.astype('float32')
@@ -195,7 +201,12 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                     s += f"{n} {names[int(c)]}{' ' * (n > 1)}, "  # add to string
 
                 # Write results
+                oldlabels=deepcopy(labels)
+                labels=np.array([])
                 for *xyxy, conf, cls in reversed(det):
+                    if track_and_count:
+                        xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()
+                        labels=np.r_[labels,np.array(xywh)]
                     if save_txt:  # Write to file
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                         line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
@@ -208,6 +219,14 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                         annotator.box_label(xyxy, label, color=colors(c, True))
                         if save_crop:
                             save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+                if track_and_count:
+                    lines_crossed=detect_and_count.estimate_flow(oldlabels,labels)
+                    freq+=1
+                    if(time.time()-tsec>5.0):
+                        print(f"FPS: {freq/5.0}")
+                        freq=0
+                        print_lines_crossed(lines_crossed)
+                        tsec=time.time()
 
             # Print time (inference + NMS)
             print(f'{s}Done. ({t2 - t1:.3f}s)')
