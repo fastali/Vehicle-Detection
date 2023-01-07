@@ -11,6 +11,8 @@ import sys
 import time
 from pathlib import Path
 
+import detect_and_count
+
 import cv2
 import numpy as np
 import torch
@@ -271,6 +273,7 @@ def parse_opt():
     parser.add_argument('--hide-labels', default=False, action='store_true', help='hide labels')
     parser.add_argument('--hide-conf', default=False, action='store_true', help='hide confidences')
     parser.add_argument('--half', action='store_true', help='use FP16 half-precision inference')
+    parser.add_argument('--track-and-count', action='store_true', help='track and count incoming and outgoing vehicles to and from the crossing.')
     opt = parser.parse_args()
     opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand
     return opt
