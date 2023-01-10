@@ -21,6 +21,7 @@ class CrossroadEngine:
         vhardlines=[]
         for i in lhardlines:
             vhardlines.append(Vector(Point(i[0],i[1]),Point(i[2],i[3])))
+        return vhardlines
         
     @staticmethod
     def coords_to_label(coords):
