@@ -230,6 +230,7 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                             save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
                 if track_and_count:
                     Cengine.analiseFrames(labels)
+                    freq+=1
                     if(time.time()-tsec>5.0):
                         print(f"FPS: {freq/5.0}")
                         freq=0
