@@ -1,4 +1,6 @@
 from vehicle import Vehicle
+from label import Label
+from point import Point
 
 class CrossroadEngine:
     
@@ -12,6 +14,9 @@ class CrossroadEngine:
         self.directionCounts=[]
         for i in self.hardlines:
             self.directionCounts.append([0,0])
+            
+    def coords_to_label(coords):
+         return Label(Point(coords[0],coords[1]),Point(coords[2],coords[3]))
             
     def generateVehicle(self,label):
         newVehicle= Vehicle()
