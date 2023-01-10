@@ -53,7 +53,7 @@ class CrossroadEngine:
                     break
                 self.directionCounts[j][1]+=1
                 break
-     def printCounts(self):
+    def printCounts(self):
         for i in range(len(self.directionCounts)):
             print(f"{i+1} yönünde giden araç sayısı: {self.directionCounts[i][0]}")
             print(f"{i+1} yönünden gelen araç sayısı: {self.directionCounts[i][1]}")
