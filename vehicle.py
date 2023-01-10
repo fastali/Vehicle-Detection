@@ -13,7 +13,7 @@ class Vehicle:
     def getLastLabel(self):
         if(len(self.labels)==0):
             return None
-        return labels[-1]
+        return self.labels[-1]
     
     def findLabels(self,frame_labels):
         self.remove_counter+=1
