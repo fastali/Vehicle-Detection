@@ -19,7 +19,7 @@ class CrossroadEngine:
     def hardline_list_to_vector(lhardlines):
         vhardlines=[]
         for i in lhardlines:
-            vhardlines.append(Vector(Point(i[0],i[1]),Point(i[2],i[3]))
+            vhardlines.append(Vector(Point(i[0],i[1]),Point(i[2],i[3])))
         
     def coords_to_label(coords):
          return Label(Point(coords[0],coords[1]),Point(coords[2],coords[3]))
