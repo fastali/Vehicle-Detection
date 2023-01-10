@@ -8,7 +8,7 @@ class Vector:
         return self.startpoint.distance(self.endpoint)
     
     @staticmethod
-    def is_counter_clockwise(pointA,PointB,PointC):
+    def is_counter_clockwise(PointA,PointB,PointC):
         return (PointC.y-PointA.y) * (PointB.x-PointA.x) > (PointB.y-PointA.y) * (PointC.x-PointA.x)
     
     def isLineCrossed(self,VectorB):
