@@ -41,7 +41,7 @@ class CrossroadEngine:
         labels=CrossroadEngine.coords_to_labels(coordslist)
         if(self.vehicles==[]):
             for i in labels:
-                self.vehicles.append(generateVehicle(i))
+                self.vehicles.append(self.generateVehicle(i))
         for i in self.vehicles:
             if(i.remove_counter==6):
                 self.vehicles.remove(i)
