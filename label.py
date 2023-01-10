@@ -6,6 +6,7 @@ class Label:
         self.startPoint=pointA
         self.endPoint=self.startPoint.newFromPoint(relpointB)
         self.center=self.startPoint.newFromCoords(relpointB.x/2,relpointB.y/2)
+        self.is_assigned=False
     
     def distanceToLabel(self,labelB):
         return self.center.distance(labelB.center)
