@@ -37,14 +37,13 @@ class Vehicle:
             return
         self.addLabel(best_candidate)
            
-    def hardlineCrossed(self,frame_labels,hardlines):
+    def hardlineCrossed(self,frame_labels,hardline):
         findLabels(frame_labels)
         if(len(self.labels)<2):
             return None
         last_movement=Vector(self.labels[-2],self.labels[-1])
-        for i in hardlines:
-            if(last_movement.isLineCrossed(i)):
-                return last_movement.isCrossDirectionInward(i)
+        if(last_movement.isLineCrossed(hardline)):
+            return last_movement.isCrossDirectionInward(hardline)
         return None
             
         
