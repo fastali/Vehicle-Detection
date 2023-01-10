@@ -36,13 +36,15 @@ class CrossroadEngine:
     def generateVehicle(self,label):
         newVehicle= Vehicle()
         newVehicle.addLabel(label)
+        self.vehicles.append(newVehicle)
             
     def analiseFrames(self,coordslist):
         labels=CrossroadEngine.coords_to_labels(coordslist)
         if(self.vehicles==[]):
             for i in labels:
-                self.vehicles.append(self.generateVehicle(i))
-                return
+                self.generateVehicle(i)
+            return
+        
         for i in self.vehicles:
             if(i.remove_counter==6):
                 self.vehicles.remove(i)
