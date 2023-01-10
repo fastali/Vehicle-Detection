@@ -117,11 +117,9 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
     ascii = is_ascii(names)  # names are ascii (use PIL for UTF-8)
 
     for m in model.modules():
-    if isinstance(m, nn.Upsample):
-        m.recompute_scale_factor = None
-    
-    
-    
+        if isinstance(m, nn.Upsample):
+            m.recompute_scale_factor = None
+            
     # Dataloader
     if webcam:
         view_img = check_imshow()
