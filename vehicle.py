@@ -38,7 +38,6 @@ class Vehicle:
         self.addLabel(best_candidate)
            
     def hardlineCrossed(self,frame_labels,hardline):
-        findLabels(frame_labels)
         if(len(self.labels)<2):
             return None
         last_movement=Vector(self.labels[-2],self.labels[-1])
