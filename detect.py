@@ -62,9 +62,8 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
     webcam = source.isnumeric() or source.endswith('.txt') or source.lower().startswith(
         ('rtsp://', 'rtmp://', 'http://', 'https://'))
     
-    hwtreshold=[0.01,0.5,0.01,0.5]
+    #hwtreshold=[0.01,0.5,0.01,0.5]
     hard_lines=[[.235,.743,.9,.92],[.84,.72,.9,.92],[.755,.63,.74,.67],[0.61,.555,.53,.555],[0.5,0.676,0.37,0.65],[.325,.64,.33,.59],[.175,.59,.11,.68]]
-    lines_crossed=np.zeros((len(hard_lines),2),dtype=int)
     
     # Directories
     save_dir = increment_path(Path(project) / name, exist_ok=exist_ok)  # increment run
