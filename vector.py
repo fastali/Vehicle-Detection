@@ -1,5 +1,3 @@
-from point import Point
-
 class Vector:
   
     def __init__(self,pointA,pointB):
