@@ -6,7 +6,7 @@ from vector import Vector
 class CrossroadEngine:
     
     def __init__(self,hardlines):
-        self.hardlines=hardlines
+        self.hardlines=CrossroadEngine.hardline_list_to_vector(hardlines)
         self.vehicles=[]
         self.generateDirectionCounts()
         
