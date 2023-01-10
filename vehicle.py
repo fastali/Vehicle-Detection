@@ -1,6 +1,4 @@
-from label import Label
 from vector import Vector
-from point import Point
 
 class Vehicle:
     def __init__(self):
