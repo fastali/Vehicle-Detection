@@ -17,12 +17,19 @@ class CrossroadEngine:
             
     def coords_to_label(coords):
          return Label(Point(coords[0],coords[1]),Point(coords[2],coords[3]))
+    
+    def coords_to_labels(coordslist):
+        labels=[]
+        for i in coordslist:
+            labels.append(coords_to_label(i))
+        return labels
             
     def generateVehicle(self,label):
         newVehicle= Vehicle()
         newVehicle.addLabel(label)
             
-    def analiseFrames(self,labels):
+    def analiseFrames(self,coordslist):
+        labels=coords_to_labels(coordslist)
         if(self.vehicles==[]):
             for i in labels:
                 self.vehicles.append(generateVehicle(i))
