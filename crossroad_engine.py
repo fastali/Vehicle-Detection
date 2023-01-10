@@ -49,7 +49,7 @@ class CrossroadEngine:
             if(i.remove_counter==6):
                 self.vehicles.remove(i)
                 continue
-            i.findlabels(labels)
+            i.findLabels(labels)
             for j in range(len(self.hardlines)):
                 result=i.hardlineCrossed(labels,self.hardlines[j])
                 if(result==None):
