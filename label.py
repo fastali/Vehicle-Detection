@@ -1,6 +1,3 @@
-from point import Point
-from vector import Vector
-
 class Label:
     def __init__(self, pointA, relpointB):
         self.startPoint=pointA
