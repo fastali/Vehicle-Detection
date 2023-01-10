@@ -16,14 +16,17 @@ class CrossroadEngine:
         for i in self.hardlines:
             self.directionCounts.append([0,0])
             
+    @staticmethod
     def hardline_list_to_vector(lhardlines):
         vhardlines=[]
         for i in lhardlines:
             vhardlines.append(Vector(Point(i[0],i[1]),Point(i[2],i[3])))
         
+    @staticmethod
     def coords_to_label(coords):
          return Label(Point(coords[0],coords[1]),Point(coords[2],coords[3]))
     
+    @staticmethod
     def coords_to_labels(coordslist):
         labels=[]
         for i in coordslist:
