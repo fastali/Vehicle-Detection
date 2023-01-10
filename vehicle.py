@@ -38,7 +38,7 @@ class Vehicle:
     def hardlineCrossed(self,frame_labels,hardline):
         if(len(self.labels)<2):
             return None
-        last_movement=Vector(self.labels[-2],self.labels[-1])
+        last_movement=Vector(self.labels[-2].center,self.labels[-1].center)
         if(last_movement.isLineCrossed(hardline)):
             return last_movement.isCrossDirectionInward(hardline)
         return None
