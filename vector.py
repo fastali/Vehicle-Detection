@@ -12,7 +12,7 @@ class Vector:
         return (PointC.y-PointA.y) * (PointB.x-PointA.x) > (PointB.y-PointA.y) * (PointC.x-PointA.x)
     
     def isLineCrossed(self,VectorB):
-        Condition2 = Vector.is_counter_clockwise(self.startpoint,VectorB.startpoint,VectorB.endpoint) != Vector.is_counter_clockwise(self.endpoint,VectorB.startpoint,VectorB.endpoint)
+        Condition1 = Vector.is_counter_clockwise(self.startpoint,VectorB.startpoint,VectorB.endpoint) != Vector.is_counter_clockwise(self.endpoint,VectorB.startpoint,VectorB.endpoint)
         Condition2 = Vector.is_counter_clockwise(self.startpoint,self.endpoint,VectorB.startpoint) != Vector.is_counter_clockwise(self.startpoint,self.endpoint,VectorB.endpoint)
         return Condition1 and Condition2
     
