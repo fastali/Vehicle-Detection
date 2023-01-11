@@ -242,7 +242,8 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                             annotator.im=cv2.circle(annotator.im,(int(vehicle.labels[0].center.x*xm),int(vehicle.labels[0].center.y*ym)),6,(255,0,0),-1)
                             continue
                         annotator.im=cv2.arrowedLine(annotator.im,(int(vehicle.labels[-2].center.x*xm),int(vehicle.labels[-2].center.y*ym)),(int(vehicle.labels[-1].center.x*xm),int(vehicle.labels[-1].center.y*ym)),(255,0,0),3)
-                    
+                    for counter in range(len(hardlines)):
+                        annotator.im = cv2.putText(annotator.im, f"{i+1} yönünde giden araç sayısı: {self.directionCounts[i][0]}\n{i+1} yönünden gelen araç sayısı: {self.directionCounts[i][1]} ", (0.1*xm,(0.2+i*0.05)*ym), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2, cv2.LINE_AA)
                     freq+=1
                     if(time.time()-tsec>5.0):
                         print(f"FPS: {freq/5.0}")
