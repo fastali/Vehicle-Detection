@@ -33,7 +33,16 @@ class CrossroadEngine:
         for i in coordslist:
             labels.append(CrossroadEngine.coords_to_label(i))
         return labels
-            
+    
+    @staticmethod
+    def filter_labels_bysize(labels,size_limit):
+        result=[]
+        for i in labels:
+            if(i.getSize()>size_limit):
+                continue
+            result.append(i)
+        return result
+    
     def generateVehicle(self,label):
         newVehicle= Vehicle()
         newVehicle.addLabel(label)
@@ -41,6 +50,7 @@ class CrossroadEngine:
             
     def analiseFrames(self,coordslist):
         labels=CrossroadEngine.coords_to_labels(coordslist)
+        labels=CrossroadEngine.filter_labels_bysize(labels)
         if(self.vehicles==[]):
             for i in labels:
                 self.generateVehicle(i)
