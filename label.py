@@ -21,3 +21,6 @@ class Label:
     
     def distanceToCenter(self,pointA):
         return self.center.distance(PointA)
+    
+    def getSize():
+        return (self.endPoint.x-self.startPoint.x)*(self.endPoint.y-self.startPoint.y)
