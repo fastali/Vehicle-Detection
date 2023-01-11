@@ -235,7 +235,7 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                     Cengine.analiseFrames(labels)
                     ym=annotator.im.shape[0]
                     xm=annotator.im.shape[1]
-                    for i in hardlines:
+                    for i in hard_lines:
                         annotator.im=cv2.arrowedLine(annotator.im,(i[0]*xm,i[1]*ym),(i[2]*xm,i[3]*ym),(0,255,0),3)
                     freq+=1
                     if(time.time()-tsec>5.0):
