@@ -3,8 +3,8 @@
 class Label:
     def __init__(self, pointA, relpointB):
         self.center=pointA
-        self.startPoint=self.startPoint.newFromCoords(-relpointB.x/2,-relpointB.y/2)
-        self.endPoint=self.startPoint.newFromCoords(relpointB.x/2,relpointB.y/2)
+        self.startPoint=self.center.newFromCoords(-relpointB.x/2,-relpointB.y/2)
+        self.endPoint=self.center.newFromCoords(relpointB.x/2,relpointB.y/2)
         self.isAssigned=False
     
     def distanceToLabel(self,labelB):
