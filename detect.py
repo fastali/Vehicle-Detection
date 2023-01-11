@@ -237,8 +237,11 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                     xm=annotator.im.shape[1]
                     for line in hard_lines:
                         annotator.im=cv2.arrowedLine(annotator.im,(int(line[0]*xm),int(line[1]*ym)),(int(line[2]*xm),int(line[3]*ym)),(0,255,0),3)
-                    for label in labels:
-                        annotator.im=cv2.circle(annotator.im,(int(label.center.x*xm),int(label.center.x*ym)),1,(0,0,255),-1)
+                    for vehicle in Cengine.vehicles:
+                        if(len(vehicle.labels)==1):
+                            annotator.im=cv2.circle(annotator.im,(int(vehicle.labels[0].center.x*xm),int(vehicle.labels[0].center.y*ym)),1,(0,0,255),-1)
+                            continue
+                        annotator.im=cv2.arrowedLine(annotator.im,(int(vehicle.labels[-1].center.x*xm),int(vehicle.labels[-1].center.y*ym)),(int(vehicle.labels[-2].center.x*xm),int(vehicle.labels[-2].center.y*ym)),(0,255,0),3)
                     
                     freq+=1
                     if(time.time()-tsec>5.0):
