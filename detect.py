@@ -63,7 +63,7 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
         ('rtsp://', 'rtmp://', 'http://', 'https://'))
     
     #hwtreshold=[0.01,0.5,0.01,0.5]
-    hard_lines=[[.235,.743,.9,.92],[.9,.92,.84,.72],[.74,.67,.755,.63],[0.61,.555,.53,.555],[0.5,0.676,0.37,0.65],[.325,.64,.33,.59],[.175,.59,.11,.68]]
+    hard_lines=[[.235,.793,.9,.92],[.9,.92,.84,.72],[.74,.67,.755,.63],[0.61,.555,.53,.555],[0.5,0.676,0.37,0.65],[.325,.64,.33,.59],[.175,.59,.11,.68]]
     
     # Directories
     save_dir = increment_path(Path(project) / name, exist_ok=exist_ok)  # increment run
@@ -215,7 +215,7 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                     if track_and_count:
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()
                         label=CrossroadEngine.coords_to_label(xywh)
-                        filtered=CrossroadEngine.filter_labels_bysize([label],0.2)
+                        filtered=CrossroadEngine.filter_labels_bysize([label],0.1)
                         if(filtered==[]):
                             continue
                         labels.append(xywh)
