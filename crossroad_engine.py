@@ -57,7 +57,7 @@ class CrossroadEngine:
             return
         
         for i in self.vehicles:
-            if(i.remove_counter==10):
+            if(i.remove_counter==3):
                 self.vehicles.remove(i)
                 continue
             i.findLabels(labels)
@@ -70,6 +70,9 @@ class CrossroadEngine:
                     break
                 self.directionCounts[j][1]+=1
                 break
+        for i in labels:
+            if(i.isAssigned==False):
+                self.generateVehicle(i)
     
     def printCounts(self):
         for i in range(len(self.directionCounts)):
