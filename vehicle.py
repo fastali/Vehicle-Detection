@@ -24,7 +24,7 @@ class Vehicle:
         for i in frame_labels:
             if(i.isAssigned):
                 continue
-            if((i.isWithinFrame(last_label.center))==False):
+            if((i.isWithinRange(2,last_label.center))==False):
                 continue
             if(best_candidate==None):
                 best_candidate=i
