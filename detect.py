@@ -215,7 +215,7 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                     if track_and_count:
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()
                         label=CrossroadEngine.coords_to_label(xywh)
-                        filtered=CrossroadEngine.filter_labels_bysize([label])
+                        filtered=CrossroadEngine.filter_labels_bysize([label],0.3)
                         if(filtered==None):
                             continue
                         labels.append(xywh)
