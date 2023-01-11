@@ -22,5 +22,13 @@ class Label:
     def distanceToCenter(self,pointA):
         return self.center.distance(PointA)
     
-    def getSize():
+    def getSize(self):
         return (self.endPoint.x-self.startPoint.x)*(self.endPoint.y-self.startPoint.y)
+    
+    def getLongestPrependicularDistanceToEdge(self):
+        xline=self.center.x-self.startpoint.x
+        yline=self.center.y-self.startpoint.y
+        if(xline>yline):
+            return xline
+        return yline
+    
