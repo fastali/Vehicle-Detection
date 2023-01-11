@@ -34,7 +34,7 @@ class Label:
     
     def isInRange(self,multiplyer,pointA):
         distance=self.distanceToCenter(pointA)
-        if(multiplyer*getLongestPrependicularDistanceToEdge()<distance):
+        if(multiplyer*self.getLongestPrependicularDistanceToEdge()<distance):
             return False
         return True
         
