@@ -26,8 +26,8 @@ class Label:
         return (self.endPoint.x-self.startPoint.x)*(self.endPoint.y-self.startPoint.y)
     
     def getLongestPrependicularDistanceToEdge(self):
-        xline=self.center.x-self.startpoint.x
-        yline=self.center.y-self.startpoint.y
+        xline=self.center.x-self.startPoint.x
+        yline=self.center.y-self.startPoint.y
         if(xline>yline):
             return xline
         return yline
