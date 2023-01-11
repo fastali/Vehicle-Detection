@@ -215,7 +215,7 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                     if track_and_count:
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()
                         label=CrossroadEngine.coords_to_label(xywh)
-                        filtered=CrossroadEngine.filter_labels_bysize([label],0.15)
+                        filtered=CrossroadEngine.filter_labels_bysize([label],0.2)
                         if(filtered==[]):
                             continue
                         labels.append(xywh)
@@ -239,9 +239,9 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                         annotator.im=cv2.arrowedLine(annotator.im,(int(line[0]*xm),int(line[1]*ym)),(int(line[2]*xm),int(line[3]*ym)),(0,255,0),3)
                     for vehicle in Cengine.vehicles:
                         if(len(vehicle.labels)==1):
-                            annotator.im=cv2.circle(annotator.im,(int(vehicle.labels[0].center.x*xm),int(vehicle.labels[0].center.y*ym)),1,(0,0,255),-1)
+                            annotator.im=cv2.circle(annotator.im,(int(vehicle.labels[0].center.x*xm),int(vehicle.labels[0].center.y*ym)),6,(255,0,0),-1)
                             continue
-                        annotator.im=cv2.arrowedLine(annotator.im,(int(vehicle.labels[-2].center.x*xm),int(vehicle.labels[-2].center.y*ym)),(int(vehicle.labels[-1].center.x*xm),int(vehicle.labels[-1].center.y*ym)),(0,0,255),3)
+                        annotator.im=cv2.arrowedLine(annotator.im,(int(vehicle.labels[-2].center.x*xm),int(vehicle.labels[-2].center.y*ym)),(int(vehicle.labels[-1].center.x*xm),int(vehicle.labels[-1].center.y*ym)),(255,0,0),3)
                     
                     freq+=1
                     if(time.time()-tsec>5.0):
