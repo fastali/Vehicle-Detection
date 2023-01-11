@@ -214,6 +214,10 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                 for *xyxy, conf, cls in reversed(det):
                     if track_and_count:
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()
+                        label=CrossroadEngine.coords_to_label(xywh)
+                        filtered=CrossroadEngine.filter_labels_bysize([label])
+                        if(filtered==None):
+                            continue
                         labels.append(xywh)
                     if save_txt:  # Write to file
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
@@ -229,6 +233,10 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                             save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
                 if track_and_count:
                     Cengine.analiseFrames(labels)
+                    ym=annotator.im.shape[0]
+                    xm=annotator.im.shape[1]
+                    for i in hardlines:
+                        annotator.im=cv2.arrowedLine(annotator.im,(i[0]*xm,i[1]*ym),(i[2]*xm,i[3]*ym),(0,255,0),3)
                     freq+=1
                     if(time.time()-tsec>5.0):
                         print(f"FPS: {freq/5.0}")
