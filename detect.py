@@ -243,8 +243,8 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                             continue
                         annotator.im=cv2.arrowedLine(annotator.im,(int(vehicle.labels[-2].center.x*xm),int(vehicle.labels[-2].center.y*ym)),(int(vehicle.labels[-1].center.x*xm),int(vehicle.labels[-1].center.y*ym)),(255,0,0),3)
                     for counter in range(len(hard_lines)):
-                        annotator.im = cv2.putText(annotator.im, f"{counter+1} yonunde giden arac sayisi: {Cengine.directionCounts[counter][0]}", (int(0.1*xm),int((0.2)*ym)+20*counter*2), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2, cv2.LINE_AA)
-                        annotator.im = cv2.putText(annotator.im, f"{counter+1} yonunden gelen arac sayisi: {Cengine.directionCounts[counter][1]}", (int(0.1*xm),int((0.2)*ym)+20*((counter*2)+1)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2, cv2.LINE_AA)
+                        annotator.im = cv2.putText(annotator.im, f"{counter+1} yonunde giden arac sayisi: {Cengine.directionCounts[counter][0]}", (int(0.03*xm),int((0.2)*ym)+40*counter*2), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2, cv2.LINE_AA)
+                        annotator.im = cv2.putText(annotator.im, f"{counter+1} yonunden gelen arac sayisi: {Cengine.directionCounts[counter][1]}", (int(0.03*xm),int((0.2)*ym)+40*((counter*2)+1)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2, cv2.LINE_AA)
                     freq+=1
                     if(time.time()-tsec>5.0):
                         print(f"FPS: {freq/5.0}")
