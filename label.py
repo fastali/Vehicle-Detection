@@ -32,3 +32,9 @@ class Label:
             return xline
         return yline
     
+    def isInRange(self,multiplyer,pointA):
+        distance=self.distanceToCenter(pointA)
+        if(multiplyer*getLongestPrependicularDistanceToEdge()<distance):
+            return False
+        return True
+        
