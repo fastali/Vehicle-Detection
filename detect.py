@@ -235,8 +235,8 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                     Cengine.analiseFrames(labels)
                     ym=annotator.im.shape[0]
                     xm=annotator.im.shape[1]
-                    for i in hard_lines:
-                        annotator.im=cv2.arrowedLine(annotator.im,(int(i[0]*xm),int(i[1]*ym)),(int(i[2]*xm),int(i[3]*ym)),(0,255,0),3)
+                    for line in hard_lines:
+                        annotator.im=cv2.arrowedLine(annotator.im,(int(line[0]*xm),int(line[1]*ym)),(int(line[2]*xm),int(line[3]*ym)),(0,255,0),3)
                     freq+=1
                     if(time.time()-tsec>5.0):
                         print(f"FPS: {freq/5.0}")
