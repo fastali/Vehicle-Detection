@@ -216,7 +216,7 @@ def run(weights='yolov5s.pt',  # model.pt path(s)
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()
                         label=CrossroadEngine.coords_to_label(xywh)
                         filtered=CrossroadEngine.filter_labels_bysize([label],0.15)
-                        if(filtered==None):
+                        if(filtered==[]):
                             continue
                         labels.append(xywh)
                     if save_txt:  # Write to file
