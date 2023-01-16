@@ -57,7 +57,7 @@ class CrossroadEngine:
             return
         
         for i in self.vehicles:
-            if(i.remove_counter==3):
+            if(i.remove_counter==5):
                 self.vehicles.remove(i)
                 continue
             i.findLabels(labels)
